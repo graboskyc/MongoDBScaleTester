@@ -1,0 +1,45 @@
+version: '3.0'
+
+services:
+  master:
+    image: 005879814094.dkr.ecr.us-east-1.amazonaws.com/locust 
+    ports:
+     - "8089:8089"
+    volumes:
+      - locustdata:/mnt/locust
+    command: --master -H http://master:8089
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 100M
+        reservations:
+          cpus: '1'
+          memory: 50M
+  
+  worker:
+    image: REPLACEME
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: /docker-compose/locust 
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: worker
+    volumes:
+      - locustdata:/mnt/locust
+    command: --worker --master-host master
+    environment:
+      IMPORT_PERIOD: 16
+      MYSQL_HOST: localhost 
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 100M
+        reservations:
+          cpus: '1'
+          memory: 50M
+
+volumes:
+  locustdata:
