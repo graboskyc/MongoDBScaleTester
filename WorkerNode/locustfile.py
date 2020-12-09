@@ -8,6 +8,7 @@ from bson import json_util
 from bson.json_util import loads
 from bson import ObjectId
 import os
+import string
 
 class Mongouser(User):
     client = pymongo.MongoClient(os.environ['MDBCONNSTRING'])
@@ -16,13 +17,13 @@ class Mongouser(User):
     @tag('uc_write')
     @task(1)
     def insert_one(self):
-        print('insert one')
+        print('upsert one')
         try:
             tic = time.time()
-            noise = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 1024*11))
-            startId = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
-
-            id = self.startId+str(tic)
+            # 11kb ascii block random worst case scenario for compression
+            noise = ''.join(random.choices(string.ascii_uppercase + string.digits + string.ascii_lowercase, k = 1024*11))
+            # 4^14 = 268,435,456 possible _id values
+            id = ''.join(random.choices('ABCDEFGHJKLMNP' , k = 4)) 
 
             obj = {"_id":id,"value": bson.Binary(noise), "created": datetime.datetime.now(), "location":os.environ['ISOLOC']   }
 

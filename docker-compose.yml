@@ -18,7 +18,7 @@ services:
           memory: 50M
   
   worker:
-    image: REPLACEME
+    image: graboskyc/mongodb-locust-scale:v1.0.1
     logging:
       driver: awslogs
       options: 
@@ -28,9 +28,8 @@ services:
     volumes:
       - locustdata:/mnt/locust
     command: --worker --master-host master
-    environment:
-      IMPORT_PERIOD: 16
-      MYSQL_HOST: localhost 
+    env_file:
+      - worker-variables.env
     deploy:
       replicas: 1
       resources:
