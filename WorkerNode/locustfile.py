@@ -9,6 +9,8 @@ from bson.json_util import loads
 from bson import ObjectId
 import os
 import string
+import random
+import pickle
 
 class Mongouser(User):
     client = pymongo.MongoClient(os.environ['MDBCONNSTRING'])
@@ -25,9 +27,9 @@ class Mongouser(User):
             # 4^14 = 268,435,456 possible _id values
             id = ''.join(random.choices('ABCDEFGHJKLMNP' , k = 4)) 
 
-            obj = {"_id":id,"value": bson.Binary(noise), "created": datetime.datetime.now(), "location":os.environ['ISOLOC']   }
+            obj = {"value": bson.Binary(pickle.dumps(noise)), "created": datetime.datetime.now(), "location":os.environ['ISOLOC']   }
 
-            output = self.db.queue.update_one(obj, upsert=True)
+            output = self.db.queue.update_one({"_id":id}, {"$set": obj}, upsert=True)
             self.environment.events.request_success.fire(request_type="pymongo", name="uc_write", response_time=(time.time()-tic), response_length=0)
 
         except KeyboardInterrupt:

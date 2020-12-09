@@ -1,2 +1,4 @@
 shortuuid>=1.0.1
 mysql-connector-python>=8.0.22
+pymongo
+dnspython
