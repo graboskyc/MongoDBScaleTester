@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   master:
-    image: graboskyc/mongodb-locust-scale:v1.0.8
+    image: graboskyc/mongodb-locust-scale:latest
     ports:
      - "8089:8089"
     volumes:
@@ -12,7 +12,7 @@ services:
       - worker-variables.env
   
   worker:
-    image: graboskyc/mongodb-locust-scale:v1.0.8
+    image: graboskyc/mongodb-locust-scale:latest
     volumes:
       - locustdata:/mnt/locust
     command: --worker --master-host master
