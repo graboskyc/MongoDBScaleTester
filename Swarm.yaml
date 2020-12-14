@@ -13,7 +13,7 @@ resources:
     postinstallorder: 10
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-1
     description: worker node 1
@@ -22,7 +22,7 @@ resources:
     postinstallorder: 20
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-2
     description: worker node 2
@@ -31,7 +31,7 @@ resources:
     postinstallorder: 30
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-3
     description: worker node 3
@@ -40,7 +40,7 @@ resources:
     postinstallorder: 40
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-4
     description: worker node 4
@@ -49,7 +49,7 @@ resources:
     postinstallorder: 50
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-5
     description: worker node 5
@@ -58,7 +58,7 @@ resources:
     postinstallorder: 60
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-6
     description: worker node 6
@@ -67,7 +67,7 @@ resources:
     postinstallorder: 70
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-7
     description: worker node 7
@@ -76,7 +76,7 @@ resources:
     postinstallorder: 80
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-8
     description: worker node 8
@@ -85,7 +85,7 @@ resources:
     postinstallorder: 90
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
   - name: swarm-worker-9
     description: worker node 9
@@ -94,5 +94,5 @@ resources:
     postinstallorder: 100
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/DeployBlueprint/master/Samples/dockerInstallUbuntu.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
         description: install docker
