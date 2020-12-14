@@ -16,4 +16,6 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 cd /home/ubuntu
-https://github.com/graboskyc/MongoDBScaleTester.git
+git clone https://github.com/graboskyc/MongoDBScaleTester.git
+
+sudo docker pull graboskyc/mongodb-locust-scale:v1.0.10

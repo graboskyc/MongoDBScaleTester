@@ -24,8 +24,8 @@ class Mongouser(User):
             tic = time.time()
             # 11kb ascii block random worst case scenario for compression
             noise = ''.join(random.choices(string.ascii_uppercase + string.digits + string.ascii_lowercase, k = 1024*11))
-            # 4^14 = 268,435,456 possible _id values
-            id = ''.join(random.choices('ABCDEFGHJKLMNP' , k = 4)) 
+            # 16^7 = 268,435,456 possible _id values
+            id = ''.join(random.choices(os.environ['KEYSPACE'] , k = int(os.environ['KEYCOUNT']) )) 
 
             obj = {"value": bson.Binary(pickle.dumps(noise)), "created": datetime.datetime.now(), "location":os.environ['ISOLOC']   }
 
