@@ -21,3 +21,8 @@
 * Check you can get to port `8089` via the SG
 * Check (from the `manager`) the containers that were deployed where with `sudo docker node ps $(sudo docker node ls -q)`
 * Did you edit the variables and compose files?
+
+## Perf Tuning
+* Your locust master may be working too hard. add: `deploy.resources.reservations.cpus: '48'` and `deploy.resources.reservations.memory: 8192M` or something
+* Make your `users` simulated and `workers` exact multiples:
+  * 19 Docker Swarm nodes? Try 190 locust workers (10x) and 38,000 users (200x)

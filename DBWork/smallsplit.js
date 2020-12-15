@@ -54,4 +54,9 @@ colNames.forEach(collection => {
 });
 sh.stopBalancer();
 
+var splitPointIds = ["1fffff6", "3fffff6", "5fffff6", "7fffff6", "9fffff6", "bfffff6", "dfffff6", "ffffff6"];
+for(s = 0; s < numShards; s++) {
+    sh.moveChunk("loadtest.queue", { "_id" : splitPointIds[s] }, "atlas-xz7vk6-shard-"+s)
+}
+
 // double check sh.status(); and db.getSiblingDB("loadtest").queue.getShardDistribution();
