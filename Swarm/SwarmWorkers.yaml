@@ -27,6 +27,9 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
   - name: swarm-worker-3
     description: worker node 3
     os: ubuntu
@@ -36,6 +39,9 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
   - name: swarm-worker-4
     description: worker node 4
     os: ubuntu
@@ -45,6 +51,9 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
   - name: swarm-worker-5
     description: worker node 5
     os: ubuntu
@@ -54,6 +63,9 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
   - name: swarm-worker-6
     description: worker node 6
     os: ubuntu
@@ -63,6 +75,9 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
   - name: swarm-worker-7
     description: worker node 7
     os: ubuntu
@@ -72,6 +87,9 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
   - name: swarm-worker-8
     description: worker node 8
     os: ubuntu
@@ -81,6 +99,9 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
   - name: swarm-worker-9
     description: worker node 9
     os: ubuntu
@@ -90,3 +111,6 @@ resources:
       - type: shell
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh
+        description: join swarm
