@@ -49,7 +49,7 @@ colNames.forEach(collection => {
 
         }
         db.adminCommand({split : collection, middle : {_id : splitPoint_hex}});
-        sh.moveChunk(dbName + "." + collection, { "_id" : insidePoint_hex }, "atlas-14dpeu-shard-"+(x-1))
+        //sh.moveChunk(dbName + "." + collection, { "_id" : insidePoint_hex }, "atlas-14dpeu-shard-"+(x-1))
     }
 });
 sh.stopBalancer();

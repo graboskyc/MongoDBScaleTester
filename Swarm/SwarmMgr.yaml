@@ -9,9 +9,9 @@ resources:
   - name: swarm-manager
     description: manager for docker swarm
     os: ubuntu
-    size: t3.xlarge
+    size: c5.4xlarge
     postinstallorder: 10
     tasks:
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker

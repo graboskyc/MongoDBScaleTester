@@ -1,0 +1,11 @@
+For a 8 shard deployment, break points are:
+
+Something after minkey
+33554432 1ffffff 1fffff6
+67108864 3ffffff 3fffff6
+100663296 5ffffff 5fffff6
+134217728 7ffffff 7fffff6
+167772160 9ffffff 9fffff6
+201326592 bffffff bfffff6
+234881024 dffffff dfffff6
+something before maxkey
