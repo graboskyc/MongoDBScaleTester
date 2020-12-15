@@ -1,0 +1,17 @@
+metadata:
+  blueprint_author: graboskyc
+  blueprint_name: Docker Swarm
+  blueprint_description: deploys nodes for a docker swarm without setting it up
+  blueprint_version: 0.1.0
+
+apiVersion: v1
+resources:
+  - name: swarm-manager
+    description: manager for docker swarm
+    os: ubuntu
+    size: t3.xlarge
+    postinstallorder: 10
+    tasks:
+      - type: shell
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/dockerInstall.sh
+        description: install docker
