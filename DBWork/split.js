@@ -41,6 +41,9 @@ colNames.forEach(collection => {
     
     for (x = lbound + Math.floor(chunkSplitInterval / 2); x < expectedDocCount; x = x + chunkSplitInterval) {
         var splitId = (pad + x.toString(16)).slice(-pad.length);
+        print(splitId);
         db.adminCommand({split : collection, middle : {_id : splitId}});
    }
 });
+
+// double check sh.status(); and db.getSiblingDB("loadtest").queue.getShardDistribution();
