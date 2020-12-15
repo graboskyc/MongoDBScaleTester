@@ -9,7 +9,7 @@ resources:
   - name: swarm-worker-1
     description: worker node 1
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 20
     tasks:
       - type: shell
@@ -21,7 +21,7 @@ resources:
   - name: swarm-worker-2
     description: worker node 2
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 30
     tasks:
       - type: shell
@@ -33,7 +33,7 @@ resources:
   - name: swarm-worker-3
     description: worker node 3
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 40
     tasks:
       - type: shell
@@ -45,7 +45,7 @@ resources:
   - name: swarm-worker-4
     description: worker node 4
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 50
     tasks:
       - type: shell
@@ -57,7 +57,7 @@ resources:
   - name: swarm-worker-5
     description: worker node 5
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 60
     tasks:
       - type: shell
@@ -69,7 +69,7 @@ resources:
   - name: swarm-worker-6
     description: worker node 6
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 70
     tasks:
       - type: shell
@@ -81,7 +81,7 @@ resources:
   - name: swarm-worker-7
     description: worker node 7
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 80
     tasks:
       - type: shell
@@ -93,7 +93,7 @@ resources:
   - name: swarm-worker-8
     description: worker node 8
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 90
     tasks:
       - type: shell
@@ -105,7 +105,7 @@ resources:
   - name: swarm-worker-9
     description: worker node 9
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 100
     tasks:
       - type: shell

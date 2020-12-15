@@ -9,7 +9,7 @@ resources:
   - name: swarm-manager
     description: manager for docker swarm
     os: ubuntu
-    size: c5.4xlarge
+    size: c5.18xlarge
     postinstallorder: 10
     tasks:
       - type: shell
