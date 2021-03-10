@@ -1,6 +1,6 @@
 FROM locustio/locust
 LABEL maintainer="chris@grabosky.net"
-LABEL version="1.0.1"
+LABEL version="1.0.13"
 
 WORKDIR /tmp/locust 
 COPY ./locustfile.py ./
