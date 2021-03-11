@@ -20,7 +20,7 @@ class Mongouser(User):
     choices = ["Clicked","Called","Other","Something"]
 
     @tag('uc_insertmany_Lookup')
-    @task(0)
+    @task(1)
     def uc_insertmany_Lookup(self):
         print('lookup')
         try:
