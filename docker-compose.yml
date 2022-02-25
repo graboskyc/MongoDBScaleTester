@@ -2,17 +2,25 @@ version: '3.0'
 
 services:
   master:
-    image: graboskyc/mongodb-locust-scale:v1.0.10
+    image: graboskyc/mongodb-locust-scale:tscol
     ports:
      - "8089:8089"
     volumes:
       - locustdata:/mnt/locust
+    deploy:
+        resources:
+                reservations:
+                        cpus: '16'
+                        memory: '16000M'
     command: --master -H http://master:8089
     env_file:
       - worker-variables.env
-  
+
   worker:
-    image: graboskyc/mongodb-locust-scale:v1.0.10
+    image: graboskyc/mongodb-locust-scale:tscol
+    deploy:
+        mode: replicated
+        replicas: 9
     volumes:
       - locustdata:/mnt/locust
     command: --worker --master-host master
