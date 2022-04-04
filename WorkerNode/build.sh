@@ -38,14 +38,14 @@ esac
 echo 
 echo "LOCUST: Building container"
 echo
-docker build -t graboskyc/mongodb-locust-scale:latest -t graboskyc/mongodb-locust-scale:v${nb} .
+docker build -t graboskyc/mongodb-locust-scale:tsdm .
 
 echo 
 echo "LOCUST: Starting container"
 echo
 docker stop locbldctr
 docker rm locbldctr
-#docker run -t -i -d -p 8888:8888 --name locbldctr --restart unless-stopped -e token="localdev" graboskyc/mongodb-locust-scale:v${nb}
+#docker run -t -i -d -p 8888:8888 --name locbldctr --restart unless-stopped -e token="localdev" graboskyc/mongodb-locust-scale:tsdm
 
 echo
 echo "+======================"

@@ -18,4 +18,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 cd /home/ubuntu
 git clone https://github.com/graboskyc/MongoDBScaleTester.git
 
-sudo docker pull graboskyc/mongodb-locust-scale:v1.0.10
+#sudo docker pull graboskyc/mongodb-locust-scale:v1.0.10
