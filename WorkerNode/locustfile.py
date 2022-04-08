@@ -14,6 +14,7 @@ import pickle
 import uuid
 from base64 import b64encode
 from random import randint
+from faker import Faker
 
 class Mongouser(User):
     client = pymongo.MongoClient(os.environ['MDBCONNSTRING'])
@@ -29,10 +30,10 @@ class Mongouser(User):
     minDate = datetime.datetime.strptime("2021-01-01", "%Y-%m-%d")
     maxDate = datetime.datetime.strptime("2021-01-31", "%Y-%m-%d")
 
-    @tag('uc_table_1')
+    @tag('uc_table_1_event')
     @task(7)
     def table1(self):
-        print('Table 1')
+        #print('Table 1')
         try:
             # thruput tracking
             tic = time.time()
@@ -41,20 +42,43 @@ class Mongouser(User):
             doc["accountclientid"] = random.choice(self.clientIds)+"ClientAppV2"
             doc["action"] = random.choice(self.actions)
             doc["authorization"] = ""
-            doc["callbackurl"] = ""
-            doc["capabilityid"] = ""
+
+            doc["callbackurl"] = "http://haproxy.coho.svc.cluster.local:8082/coho/v2/asyncmessages"
+            i = 0
+            while i < randint(1, 4):
+                doc["callbackurl"] = doc["callbackurl"] + "/" + random.choice(self.fieldIds)
+                i = i + 1
+
+            doc["capabilityid"] = str(uuid.uuid4())
             doc["createdon"] = datetime.datetime.combine(self.f.date_between(self.minDate, self.maxDate), datetime.datetime.min.time())
-            doc["description"] = ""
+            doc["description"] = self.f.sentence()
             doc["deviceid"] = str(uuid.uuid4())
-            doc["errmsg"] = ""
+            doc["errmsg"] = self.f.sentence()
             doc["fieldid"] = random.choice(self.fieldIds)
-            doc["fieldvalue"] = b64encode(self.f.sentence().encode("ascii"))
+
+            #doc["fieldvalue"] = b64encode(self.f.sentence().encode("ascii"))
+            whichFormat = randint(1, 3)
+            if(whichFormat == 1):
+                doc["fieldvalue"] = randint(1,100)
+            elif (whichFormat == 2):
+                # "rules":[{"action":"accept","match":"source","sense":"inbound","source":{"address":"thingspace-core.verizon.com","port":"80"}}]}
+                doc["fieldvalue"] = {}
+                doc["fieldvalue"]["domains"] = ["test.example.com"]
+                doc["fieldvalue"]["rules"]  = ""
+            else:
+                doc["fieldvalue"] = {}
+                doc["fieldvalue"]["altitude"] = random.uniform(0.1, 75.5)
+                doc["fieldvalue"]["latitude"] =  str(self.f.latitude())
+                doc["fieldvalue"]["longitude"] =  str(self.f.longitude())
+                doc["fieldvalue"]["radius"] = str(randint(1000,2000))
+                doc["fieldvalue"]["type"] = "cellid"
+
             doc["foreignid"] = str(uuid.uuid4())
             doc["id"] = str(uuid.uuid4())
             doc["kind"] = "ts.event."+doc["fieldid"]
             doc["lastupdated"] = doc["createdon"]
             doc["modelid"] = ""
-            doc["name"] = ""
+            doc["name"] = self.f.name()
             doc["state"] = random.choice(self.state)
             
             doc["tags"] = []
@@ -71,20 +95,20 @@ class Mongouser(User):
             output = self.client.ts.event_by_device_new.insert_one(doc)
 
             # thruput tracking
-            self.environment.events.request_success.fire(request_type="pymongo", name="uc_table_1", response_time=(time.time()-tic), response_length=0)
+            self.environment.events.request_success.fire(request_type="pymongo", name="uc_table_1_event", response_time=(time.time()-tic), response_length=0)
 
         except KeyboardInterrupt:
             print
             sys.exit(0)
         except Exception as e:
             print(f'{datetime.datetime.now()} - DB-CONNECTION-PROBLEM: ' f'{str(e)}')
-            self.environment.events.request_failure.fire(request_type="pymongo", name="uc_table_1", response_time=(time.time()-tic), response_length=0)
+            self.environment.events.request_failure.fire(request_type="pymongo", name="uc_table_1_event", response_time=(time.time()-tic), response_length=0)
             connect_problem = True
 
-    @tag('uc_table_2')
+    @tag('uc_table_2_target')
     @task(1)
     def table2(self):
-        print('Table 2')
+        #print('Table 2')
         try:
             tic = time.time()
             # 11kb ascii block random worst case scenario for compression
@@ -110,7 +134,10 @@ class Mongouser(User):
             doc["description"] = self.f.sentence()
 
             doc["fields"] = {}
-            doc["fields"]["httpheaders"] = b64encode(self.f.sentence().encode("ascii"))
+            doc["fields"]["httpheaders"] = {}
+            doc["fields"]["httpheaders"]["Accept"] = "application/json"
+            doc["fields"]["httpheaders"]["Content-Type"] = "application/json"
+            doc["fields"]["httpheaders"]["Authorization"] = "Basic " + self.f.pystr(69,69)
 
             doc["foreignid"] = str(uuid.uuid4())
             doc["fromaddress"] = ""
@@ -132,20 +159,20 @@ class Mongouser(User):
             output = self.client.ts.target_new.insert_one(doc)
 
             # thruput tracking
-            self.environment.events.request_success.fire(request_type="pymongo", name="uc_table_2", response_time=(time.time()-tic), response_length=0)
+            self.environment.events.request_success.fire(request_type="pymongo", name="uc_table_2_target", response_time=(time.time()-tic), response_length=0)
 
         except KeyboardInterrupt:
             print
             sys.exit(0)
         except Exception as e:
             print(f'{datetime.datetime.now()} - DB-CONNECTION-PROBLEM: ' f'{str(e)}')
-            self.environment.events.request_failure.fire(request_type="pymongo", name="uc_table_2", response_time=(time.time()-tic), response_length=0)
+            self.environment.events.request_failure.fire(request_type="pymongo", name="uc_table_2_target", response_time=(time.time()-tic), response_length=0)
             connect_problem = True
 
-    @tag('uc_table_3')
+    @tag('uc_table_3_device')
     @task(2)
     def table3(self):
-        print('Table 3')
+        #print('Table 3')
         try:
             # thruput tracking
             tic = time.time()
@@ -153,7 +180,7 @@ class Mongouser(User):
             doc = {}
             doc["accountclientid"] = ""
             doc["actions"] = None
-            doc["billingaccountid"] = ""
+            doc["billingaccountid"] = str(randint(1000000, 9999999))
             doc["chipset"] = ""
             doc["createdon"] = datetime.datetime.combine(self.f.date_between(self.minDate, self.maxDate), datetime.datetime.min.time())
             
@@ -171,7 +198,7 @@ class Mongouser(User):
             doc["hw_version"] = ""
             doc["iccid"] = ""
             doc["id"] = str(uuid.uuid4())
-            doc["imei"] = "0"
+            doc["imei"] = self.f.hexify(text='^^-^^^^^^-^^^^^^-^') 
             doc["imsi"] = "0"
             doc["isdeleted"] = False
             doc["kind"] = "ts.device"
@@ -187,23 +214,29 @@ class Mongouser(User):
             doc["qrcode"] = ""
             doc["refid"] = str(uuid.uuid4())
             doc["refidtype"] = "uuid"
-            doc["serial"] = ""
+            doc["serial"] = str(randint(1000000, 9999999))
             doc["sku"] = ""
             doc["state"] = "activated"
             doc["sw_version"] = ""
+            
             doc["tags"] = []
+            i = 0
+            while i < randint(1, 4):
+                doc["tags"].append(str(uuid.uuid4()))
+                i = i + 1
+                
             doc["version"] = 1.0
             doc["versionid"] = str(uuid.uuid4())
 
             output = self.client.ts.device.insert_one(doc)
 
             # thruput tracking
-            self.environment.events.request_success.fire(request_type="pymongo", name="uc_table_3", response_time=(time.time()-tic), response_length=0)
+            self.environment.events.request_success.fire(request_type="pymongo", name="uc_table_3_device", response_time=(time.time()-tic), response_length=0)
 
         except KeyboardInterrupt:
             print
             sys.exit(0)
         except Exception as e:
             print(f'{datetime.datetime.now()} - DB-CONNECTION-PROBLEM: ' f'{str(e)}')
-            self.environment.events.request_failure.fire(request_type="pymongo", name="uc_table_3", response_time=(time.time()-tic), response_length=0)
+            self.environment.events.request_failure.fire(request_type="pymongo", name="uc_table_3_device", response_time=(time.time()-tic), response_length=0)
             connect_problem = True
