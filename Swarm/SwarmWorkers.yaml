@@ -16,7 +16,7 @@ resources:
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh SWMTKN-1-2vjmq1f3xgrydkma6onn9jpiejfj3s4if6jf8h6mpawzpo8jkt-23vsvcb9oavinao5zdwng5gox 172.31.11.154:2377
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh SWMTKN-1-5b4l6ferora6ng6xilyzqpcl3ikb5po00z8f7jhgckibn9ys2k-60qkwd1443yncmms51imzevro 172.31.59.45:2377
         description: join swarm
   - name: swarm-worker-2
     description: worker node 2
@@ -28,5 +28,5 @@ resources:
         url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerInstall.sh
         description: install docker
       - type: shell
-        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh SWMTKN-1-2vjmq1f3xgrydkma6onn9jpiejfj3s4if6jf8h6mpawzpo8jkt-23vsvcb9oavinao5zdwng5gox 172.31.11.154:2377
+        url: https://raw.githubusercontent.com/graboskyc/MongoDBScaleTester/master/Swarm/dockerJoinSwarm.sh SWMTKN-1-5b4l6ferora6ng6xilyzqpcl3ikb5po00z8f7jhgckibn9ys2k-60qkwd1443yncmms51imzevro 172.31.59.45:2377
         description: join swarm

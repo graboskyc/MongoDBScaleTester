@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   master:
-    image: graboskyc/mongodb-locust-scale:tsdm
+    image: graboskyc/mongodb-locust-scale:tssoda
     ports:
      - "8089:8089"
     volumes:
@@ -12,7 +12,7 @@ services:
       - worker-variables.env
   
   worker:
-    image: graboskyc/mongodb-locust-scale:tsdm
+    image: graboskyc/mongodb-locust-scale:tssoda
     deploy:
         mode: replicated
         replicas: 1
